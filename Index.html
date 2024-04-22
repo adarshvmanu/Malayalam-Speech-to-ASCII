@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2മ</title>
+    <link rel="stylesheet" href="Styles/gemini.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            Malayalam Converter
+        </div>
+    </nav>
+    <div class="main">
+        <div class="content">
+            <h1>Hello,</h1>
+            <h1>Type or Speak to Convert</h1>  
+        </div>
+        <textarea id="text-field" class="form-control" rows="12"></textarea>
+        <div class="input-group">
+            <input type="text" id="text-convert" class="form-control" placeholder="type to convert">
+            <button class="btn" id="convert" type="button">Convert</button>
+            <button class="btn" id="start_button" onclick="startButton(event)" type="button">Speak</button>
+        </div>
+        <div id="info">
+            <p id="info_start">
+              Click Speak and begin speaking for as long as you like.
+            </p>
+            <p id="info_speak_now" style="display:none">
+              Speak now.
+            </p>
+            <p id="info_no_speech" style="display:none">
+              No speech was detected. You may need to adjust your <a href=
+              "//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone
+              settings</a>.
+            </p>
+            <p id="info_no_microphone" style="display:none">
+              No microphone was found. Ensure that a microphone is installed and that
+              <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+              microphone settings</a> are configured correctly.
+            </p>
+            <p id="info_allow" style="display:none">
+              Click the "Allow" button above to enable your microphone.
+            </p>
+            <p id="info_denied" style="display:none">
+              Permission to use microphone was denied.
+            </p>
+            <p id="info_blocked" style="display:none">
+              Permission to use microphone is blocked. To change, go to
+              chrome://settings/contentExceptions#media-stream
+            </p>
+            <p id="info_upgrade" style="display:none">
+              Web Speech API is not supported by this browser. Upgrade to <a href=
+              "//www.google.com/chrome">Chrome</a> version 25 or later.
+            </p>
+          </div>
+    </div> 
+    <script src="Scripts/script.js"></script>   
+</body>
+</html>
