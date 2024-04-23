@@ -75,4 +75,23 @@ textarea{
 #info{
     margin-top: 10px;
     padding: 5px;
+    color: #6b757d;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+  
+.icon-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+  
+.icon {
+    width: 24px; 
+    height: 24px; 
+    fill: #aec926;
 }

@@ -7,7 +7,6 @@ const speak = document.getElementById('start_button');
 if (!('webkitSpeechRecognition' in window)) {
     upgrade();
 } else {
-    start_button.style.display = 'inline-block';
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -41,7 +40,6 @@ if (!('webkitSpeechRecognition' in window)) {
         if (ignore_onend) {
             return;
         }
-        start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
         if (!final_transcript) {
             showInfo('info_start');
             return;
@@ -52,10 +50,6 @@ if (!('webkitSpeechRecognition' in window)) {
             var range = document.createRange();
             range.selectNode(document.getElementById('final_span'));
             window.getSelection().addRange(range);
-        }
-        if (create_email) {
-            create_email = false;
-            createEmail();
         }
     };
 
@@ -76,16 +70,12 @@ if (!('webkitSpeechRecognition' in window)) {
         }
         final_transcript = capitalize(final_transcript);
         var combinedText = final_transcript + ' ' + interim_transcript;
-        document.getElementById('text-field').value = combinedText;
-        if (final_transcript || interim_transcript) {
-            showButtons('inline-block');
-        }
+        document.getElementById('text-field').value = convert(combinedText,"");
     };
 }
 
 
 function upgrade() {
-  start_button.style.visibility = 'hidden';
   showInfo('info_upgrade');
 }
 
@@ -106,15 +96,22 @@ function copyButton() {
     recognizing = false;
     recognition.stop();
   }
-  copy_button.style.display = 'none';
-  copy_info.style.display = 'inline-block';
   showInfo('');
+  const textarea = document.getElementById('text-field');
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    alert('Text copied successfully');
+  } catch (err) {
+    alert('Failed to copy text');
+  }
 }
 
 function startButton(event) {
   if (recognizing) {
     speak.style.backgroundColor = '#aec926';
     recognition.stop();
+    showInfo('info_start')
     return;
   }
   speak.style.backgroundColor = '#c97a26';
@@ -122,8 +119,6 @@ function startButton(event) {
   recognition.lang = 'ml-IN';
   recognition.start();
   ignore_onend = false;
-  //final_span.innerHTML = '';
-  //interim_span.innerHTML = '';
   showInfo('info_allow');
   start_timestamp = event.timeStamp;
 }
