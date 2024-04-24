@@ -70,7 +70,7 @@ if (!('webkitSpeechRecognition' in window)) {
         }
         final_transcript = capitalize(final_transcript);
         var combinedText = final_transcript + ' ' + interim_transcript;
-        document.getElementById('text-field').value = convert(combinedText,"");
+        document.getElementById('text-field').value = combinedText;
     };
 }
 
@@ -96,16 +96,22 @@ function copyButton() {
     recognizing = false;
     recognition.stop();
   }
-  showInfo('');
   const textarea = document.getElementById('text-field');
-  textarea.select();
+  const originalText = textarea.value;
+  const modifiedText = convert(originalText,"ML-Karthika-Normal-3")
+  const tempTextarea = document.createElement('textarea');
+  tempTextarea.value = modifiedText;
+  document.body.appendChild(tempTextarea);
+  tempTextarea.select();
   try {
     document.execCommand('copy');
     alert('Text copied successfully');
   } catch (err) {
     alert('Failed to copy text');
   }
+  document.body.removeChild(tempTextarea);
 }
+
 
 function startButton(event) {
   if (recognizing) {
